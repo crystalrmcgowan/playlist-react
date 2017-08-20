@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
 class PlayListItem extends Component {
   constructor(props) {
-    super(props) {
-
+    super(props)
   }
 }
 export default PlayListItem
