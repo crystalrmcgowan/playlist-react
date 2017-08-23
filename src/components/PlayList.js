@@ -8,8 +8,6 @@ class PlayList extends Component {
     this.state = {
       songs: []
     }
-
-    this.fetchData = this.fetchData.bind(this)
   }
 
   fetchData = e => {
@@ -35,27 +33,12 @@ class PlayList extends Component {
   }
   render() {
     let songs = this.state.songs.map(song => {
-      return (
-        <section className="songCards" key={song._id}>
-          <p>
-            User: {song.userName}
-          </p>
-          <p>
-            Artist/Band: {song.artist}
-          </p>
-          <p>
-            Title: {song.songTitle}
-          </p>
-          <p>
-            Notes: {song.notes}
-          </p>
-        </section>
-      )
+      return <PlayListItem song={song} />
     })
     return (
       <div className="wholePlayList">
         <div className="generatedContent">
-          <button type="Submit" id="listSubmit">
+          <button type="Submit" id="listSubmit" onClick={this.fetchData}>
             Update List
           </button>
         </div>

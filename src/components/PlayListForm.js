@@ -13,12 +13,12 @@ class PlayListForm extends Component {
   }
   addToList = e => {
     e.preventDefault()
-    this.setState({
-      userName: e.target.value,
-      songTitle: e.target.value,
-      songArtist: e.target.value,
-      songNotes: e.target.value
-    })
+    // this.setState({
+    //   userName: e.target.value,
+    //   songTitle: e.target.value,
+    //   songArtist: e.target.value,
+    //   songNotes: e.target.value
+    // })
     let listItem = JSON.stringify(this.state)
 
     fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
@@ -43,28 +43,52 @@ class PlayListForm extends Component {
     })
   }
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
   render() {
     return (
       <div className="userInput">
-        <form className="userName">
+        <form className="userName" onSubmit={this.addToList}>
           <p>User Name:</p>
-          <input type="text" placeholder="Name or User Name" />
-        </form>
-        <form className="artistBand">
+          <input
+            type="text"
+            placeholder="Name or User Name"
+            onChange={this.handleChange}
+            name="userName"
+            value={this.state.userName}
+          />
           <p>Artist/Band:</p>
-          <input type="text" placeholder="Artist or Band Name" />
-        </form>
-        <form className="songTitle">
+          <input
+            type="text"
+            placeholder="Artist or Band Name"
+            onChange={this.handleChange}
+            name="songArtist"
+            value={this.state.songArtist}
+          />
           <p>Song Title:</p>
-          <input type="text" placeholder="Song Title" />
-        </form>
-        <form className="notesAboutSong">
+          <input
+            type="text"
+            placeholder="Song Title"
+            onChange={this.handleChange}
+            name="songTitle"
+            value={this.state.songTitle}
+          />
           <p>Notes about Song:</p>
-          <textarea rows="4" cols="40" />
+          <textarea
+            rows="4"
+            cols="40"
+            onChange={this.handleChange}
+            name="songNotes"
+            value={this.state.songNotes}
+          />
+          <button type="Submit" id="submit">
+            Submit
+          </button>
         </form>
-        <button type="Submit" id="submit">
-          Submit
-        </button>
       </div>
     )
   }
